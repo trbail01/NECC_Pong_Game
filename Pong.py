@@ -1,6 +1,7 @@
 import pygame
 pygame.init()
 
+
 # set up display window and program variables
 WIDTH, HEIGHT = 700, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))  # set window to height and width
