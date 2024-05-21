@@ -43,6 +43,7 @@ class Paddle:
         self.x = self.original_x
         self.y = self.original_y
 
+
 # class defining the ball
 class Ball:
     MAX_VEL = 5
@@ -127,7 +128,9 @@ def main():
     # define main program loop
     while run:
         clock.tick(FPS)  # while loop can only run at a max of 60 FPS
-        draw(WIN, [left_paddle, right_paddle], ball, left_score, right_score)  # continuously updates the window with drawings every frame
+
+        # continuously update the window with drawings every frame
+        draw(WIN, [left_paddle, right_paddle], ball, left_score, right_score)
 
         for event in pygame.event.get():  # get events like mouse clicks, keyboard inputs, closing window
             if event.type == pygame.QUIT:  # check if red button in top-right corner is pressed
@@ -150,6 +153,7 @@ def main():
 
         # check if anyone has won the game. Display winner. Restart a new game after 5 seconds of winning
         won = False
+        win_text = ''
         if left_score >= WINNING_SCORE:
             won = True
             win_text = "Left Player Won!"
@@ -176,14 +180,14 @@ def handle_collision(ball, left_paddle, right_paddle):
     # check if ball collides with floor or ceiling
     if ball.y + ball.radius >= HEIGHT:  # calculate if ball collides with floor
         ball.y_vel *= -1  # reverse the ball's direction at its current velocity
-    elif ball.y + ball.radius <= 0: # calculate if ball hits the ceiling
+    elif ball.y + ball.radius <= 0:  # calculate if ball hits the ceiling
         ball.y *= -1
 
     # check if ball collides with either paddle
     if ball.x_vel < 0:  # only check for left paddle if ball is moving left
         # calculate if ball is within range of the left paddle
         if left_paddle.y <= ball.y <= left_paddle.y + left_paddle.height:  # check if ball's center y is in range
-            if ball.x - ball.radius <= left_paddle.x + left_paddle.width: # check if ball's center x is in range
+            if ball.x - ball.radius <= left_paddle.x + left_paddle.width:  # check if ball's center x is in range
                 ball.x_vel *= -1  # reverse x direction
                 middle_y = left_paddle.y + left_paddle.height / 2  # determine middle point of paddle
                 difference_in_y = middle_y - ball.y  # determine displacement between paddle and ball's center points
@@ -201,8 +205,6 @@ def handle_collision(ball, left_paddle, right_paddle):
                 reduction_factor = (right_paddle.height / 2) / ball.MAX_VEL
                 y_velocity = difference_in_y / reduction_factor
                 ball.y_vel = y_velocity * -1
-
-    #
 
 
 if __name__ == '__main__':  # ensures only this module can run the main() method
