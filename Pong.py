@@ -68,7 +68,7 @@ class Ball:
         self.x = self.original_x
         self.y = self.original_y
         self.y_vel = 0
-        self.x_vel *= -1  # if someone scores, ball goes towards their opponent upon reset
+        self.x_vel *= -1  # if someone scores, ball restarts in opposite direction to give their opponent recover time
 
 
 # define a function to do the drawing for the app
