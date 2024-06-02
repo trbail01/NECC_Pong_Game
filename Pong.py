@@ -181,7 +181,7 @@ def handle_collision(ball, left_paddle, right_paddle):
     if ball.y + ball.radius >= HEIGHT:  # calculate if ball collides with floor
         ball.y_vel *= -1  # reverse the ball's direction at its current velocity
     elif ball.y + ball.radius <= 0:  # calculate if ball hits the ceiling
-        ball.y *= -1
+        ball.y_vel *= -1
 
     # check if ball collides with either paddle
     if ball.x_vel < 0:  # only check for left paddle if ball is moving left
