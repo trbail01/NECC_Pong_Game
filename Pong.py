@@ -5,7 +5,7 @@ pygame.init()
 # set up display window and program variables
 WIDTH, HEIGHT = 700, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))  # set window to height and width
-pygame.display.set_caption('Pong')  # set caption title for window
+pygame.display.set_caption("Ben's Pong Game")  # set caption title for window
 FPS = 60
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
