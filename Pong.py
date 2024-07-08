@@ -184,16 +184,16 @@ def handle_collision(ball, left_paddle, right_paddle):
         ball.y_vel *= -1
 
     # check if ball collides with either paddle
-    if ball.x_vel < 0:  # only check for left paddle if ball is moving left
+    if ball.x_vel < 0:  # only check for a left paddle collision if ball is moving left
         # calculate if ball is within range of the left paddle
         if left_paddle.y <= ball.y <= left_paddle.y + left_paddle.height:  # check if ball's center y is in range
             if ball.x - ball.radius <= left_paddle.x + left_paddle.width:  # check if ball's center x is in range
-                ball.x_vel *= -1  # reverse x direction
+                ball.x_vel *= -1  # reverse x direction of the ball
                 middle_y = left_paddle.y + left_paddle.height / 2  # determine middle point of paddle
                 difference_in_y = middle_y - ball.y  # determine displacement between paddle and ball's center points
-                reduction_factor = (left_paddle.height / 2) / ball.MAX_VEL
-                y_velocity = difference_in_y / reduction_factor
-                ball.y_vel = y_velocity * -1
+                reduction_factor = (left_paddle.height / 2) / ball.MAX_VEL  # calculate reduction factor for new angle
+                y_velocity = difference_in_y / reduction_factor  # set new y velocity based on where it collided
+                ball.y_vel = y_velocity * -1  # reverse the y direction of the ball
     else:  # checks for right paddle collision
         # calculate if ball is in range of right paddle
         if right_paddle.y <= ball.y <= right_paddle.y + right_paddle.height:
