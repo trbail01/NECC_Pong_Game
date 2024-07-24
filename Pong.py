@@ -1,3 +1,5 @@
+import random
+
 import pygame
 pygame.init()
 
@@ -54,7 +56,7 @@ class Ball:
         self.y = self.original_y = y
         self.radius = radius
         self.x_vel = self.MAX_VEL  # ball will move to right at max velocity at start of game
-        self.y_vel = 0
+        self.y_vel = random.randint(self.MAX_VEL * -1, self.MAX_VEL)  # start the ball in a random y direction
 
     def draw(self, win):
         pygame.draw.circle(win, self.COLOR, (self.x, self.y), self.radius,)
@@ -67,11 +69,11 @@ class Ball:
     def reset(self):
         self.x = self.original_x
         self.y = self.original_y
-        self.y_vel = 0
+        self.y_vel = random.randint(self.MAX_VEL * -1, self.MAX_VEL)
         self.x_vel *= -1  # if someone scores, ball restarts in opposite direction to give their opponent recover time
 
 
-# define a function to do the drawing for the app
+# define a function to do all the drawing for the app
 def draw(win, paddles, ball, left_score, right_score):
     win.fill(BLACK)  # background color for window
 
@@ -133,13 +135,16 @@ def main():
         draw(WIN, [left_paddle, right_paddle], ball, left_score, right_score)
 
         for event in pygame.event.get():  # get events like mouse clicks, keyboard inputs, closing window
-            if event.type == pygame.QUIT:  # check if red button in top-right corner is pressed
+
+            # check if red 'x' button in top-right corner is pressed.
+            # If so, discontinue running the main program loop and break from this loop
+            if event.type == pygame.QUIT:
                 run = False
                 break
 
+        # call functions to move the paddle, move the ball, and handle ball collisions every frame
         keys = pygame.key.get_pressed()  # gets keys pressed by user
         handle_paddle_movement(keys, left_paddle, right_paddle)
-
         ball.move()
         handle_collision(ball, left_paddle, right_paddle)
 
@@ -207,5 +212,6 @@ def handle_collision(ball, left_paddle, right_paddle):
                 ball.y_vel = y_velocity * -1
 
 
+# call main program function
 if __name__ == '__main__':  # ensures only this module can run the main() method
     main()
