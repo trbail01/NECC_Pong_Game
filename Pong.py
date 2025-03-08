@@ -6,20 +6,20 @@ pygame.init()
 # Set up display window and program variables
 WIDTH, HEIGHT = 700, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Pong Game")
+pygame.display.set_caption("Ben's Pong Game")
 FPS = 60
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 PADDLE_WIDTH, PADDLE_HEIGHT = 20, 100
-BALL_RADIUS = 7
+BALL_RADIUS = 9
 SCORE_FONT = pygame.font.SysFont("comicsans", 50)
-WINNING_SCORE = 10
+WINNING_SCORE = 5
 
 
 # Class to define the paddles
 class Paddle:
     COLOR = WHITE
-    VEL = 4
+    VEL = 6
 
     def __init__(self, x, y, width, height):
         self.x = self.original_x = x
@@ -141,6 +141,10 @@ def show_start_screen(win):
     for i, line in enumerate(instructions):
         text = info_font.render(line, 1, WHITE)
         win.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 + i * 40))
+
+    about_font = pygame.font.SysFont("comicsans",15)
+    about_text = about_font.render("Program written by Ben S., Northeast Community College IT Student 2025", 1, WHITE)
+    win.blit(about_text, (WIDTH // 2 - about_text.get_width() // 2, HEIGHT // 8))
 
     pygame.display.update()
 
