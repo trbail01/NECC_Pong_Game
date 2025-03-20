@@ -143,7 +143,7 @@ def show_start_screen(win):
         win.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 + i * 40))
 
     about_font = pygame.font.SysFont("comicsans",15)
-    about_text = about_font.render("Program written by Ben S., Northeast Community College IT Student 2025", 1, WHITE)
+    about_text = about_font.render("Program written by Ben Stearns, Northeast Community College IT Student 2025", 1, WHITE)
     win.blit(about_text, (WIDTH // 2 - about_text.get_width() // 2, HEIGHT // 8))
 
     pygame.display.update()
